@@ -12,7 +12,7 @@ pipeline {
         stage('Setup') {
             steps {
         sh 'sudo apt update && sudo apt install -y python3 python3-pip'
-        sh 'sudo pip install -r requirement.txt'
+        sh 'sudo pip install -r requirements.txt'
         }
         }
 
