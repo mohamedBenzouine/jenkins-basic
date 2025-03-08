@@ -10,7 +10,7 @@ pipeline {
         stage('Setup'){
             steps{
                 echo "my creds: ${SERVER_CREDS}"
-                echo "Username: ${SERVER_CREDS_USER}"
+                echo "Username: ${SERVER_CREDS_USR}"
                 echo "password: ${SERVER_CREDS_PSW}"
                 sh "pip install -r requirements.txt"
             }
