@@ -3,6 +3,21 @@ pipeline {
 
     stages {
 
+        stage('lint and format')
+            stages{
+                stage('linting'){
+                    steps{
+                        echo "linting code in nested stage"
+                    }
+                }
+
+                stage('formating'){
+                    steps{
+                        echo "formating code in nested stage"
+                    }
+                }
+            }
+
         stage('Setup'){
             steps{
                 withCredentials([usernamePassword(credentialsId: 'server-cred', usernameVariable: "myuser", passwordVariable: "mypassword")]){
