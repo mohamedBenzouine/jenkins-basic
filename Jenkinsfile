@@ -2,27 +2,22 @@ pipeline {
     agent any
 
     stages {
-
-        stage('lint and format')
+        stage('Lint and Format') {
             steps {
                 script {
-                stage('linting'){
-                    steps{
-                        echo "linting code in nested stage"
+                    stage('Linting') {
+                        echo "Linting code in nested stage"
                     }
-                }
-
-                stage('formating'){
-                    steps {
-                        echo "formating code in nested stage"
+                    stage('Formatting') {
+                        echo "Formatting code in nested stage"
                     }
-                }
                 }
             }
+        }
 
-        stage('Setup'){
+        stage('Setup') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'server-cred', usernameVariable: "myuser", passwordVariable: "mypassword")]){
+                withCredentials([usernamePassword(credentialsId: 'server-cred', usernameVariable: "myuser", passwordVariable: "mypassword")]) {
                     sh '''
                     echo ${myuser}
                     echo ${mypassword}
@@ -36,9 +31,7 @@ pipeline {
             steps {
                 sh "pytest"
                 echo "Commit: ${env.GIT_COMMIT}"
-                
             }
         }    
-      
     }
 }
