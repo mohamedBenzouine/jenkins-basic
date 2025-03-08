@@ -3,22 +3,6 @@ pipeline {
 
     stages {
 
-        stage('lint and format'){
-            parallel {
-                stage('linting'){
-                    steps{
-                        sh "sleep 30"
-                    }
-                }
-
-                stage('formating'){
-                    steps{
-                        sh "sleep 30"
-                    }
-                }
-            }
-        }
-
         stage('Setup'){
             steps {
                 withCredentials([usernamePassword(credentialsId: 'server-cred', usernameVariable: "myuser", passwordVariable: "mypassword")]){
@@ -38,6 +22,18 @@ pipeline {
                 
             }
         }    
+
+        stage('Deployment') {
+            input {
+                message "Do you want to proceed further ?"
+                ok "Yes"
+            }
+            
+            steps {
+                echo "Running Deployment"
+                
+            }
+        }   
       
     }
 }
