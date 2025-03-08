@@ -4,7 +4,8 @@ pipeline {
     stages {
 
         stage('lint and format')
-            stages{
+            steps {
+                script {
                 stage('linting'){
                     steps{
                         echo "linting code in nested stage"
@@ -12,14 +13,15 @@ pipeline {
                 }
 
                 stage('formating'){
-                    steps{
+                    steps {
                         echo "formating code in nested stage"
                     }
+                }
                 }
             }
 
         stage('Setup'){
-            steps{
+            steps {
                 withCredentials([usernamePassword(credentialsId: 'server-cred', usernameVariable: "myuser", passwordVariable: "mypassword")]){
                     sh '''
                     echo ${myuser}
